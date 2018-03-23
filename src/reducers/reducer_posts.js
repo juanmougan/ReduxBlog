@@ -2,7 +2,7 @@ import _ from 'lodash';
 import { FETCH_POSTS } from '../actions';
 
 // for the first time it runs, we're going to default state to an empty object
-exports default function (state = {}, action) {
+export default function (state = {}, action) {
   switch (action.type) {
     case FETCH_POSTS:
       // If I did this here
