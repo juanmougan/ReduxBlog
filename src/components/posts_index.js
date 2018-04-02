@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { fetchPosts } from '../actions';
 
 class PostsIndex extends Component {
@@ -28,6 +29,15 @@ class PostsIndex extends Component {
     // the data from the API
     return (
       <div>
+        <div>
+          <div className = "text-xs-right">
+            {/* The "to" property is a String pointing to the Route the user */}
+            {/* will navigate when clicking the link */}
+            <Link className = "btn btn-primary" to = "/posts/new">
+              Add a Post
+            </Link>
+          </div>
+        </div>
         <h3>Posts</h3>
         <ul className = "list-group">
           { this.renderPosts() }
