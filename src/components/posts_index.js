@@ -9,6 +9,10 @@ class PostsIndex extends Component {
     this.props.fetchPosts();
   }
   render() {
+    console.log(this.props.posts);
+    // Renders twice: once without the posts
+    // and then, when the promise is resolved, it's re-rendered with
+    // the data from the API
     return (
       <div>
         Posts Index
@@ -17,8 +21,14 @@ class PostsIndex extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return { posts: state.posts };
+}
+
 // In the past, we used matchDispathToProps()
 // null here is mapStateToProps
 // export default connect(null, { fetchPosts: fetchPosts })(PostsIndex);
 // with es6 this can be written like this
-export default connect(null, { fetchPosts })(PostsIndex);
+
+// update: removed null as the first parameter, because now is mapStateToProps
+export default connect(mapStateToProps, { fetchPosts })(PostsIndex);
