@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions';
@@ -8,14 +9,29 @@ class PostsIndex extends Component {
     // So we will fetch data here
     this.props.fetchPosts();
   }
+
+  renderPosts() {
+    // Using lodash because this.props.posts is an object, not an array
+    // so it doesn't have a map() function built in
+    return _.map(this.props.posts, post => {
+      return(
+        <li className = "list-group-item" key = {post.id}>
+          {post.title}
+        </li>
+      )
+    });
+  }
+
   render() {
-    console.log(this.props.posts);
     // Renders twice: once without the posts
     // and then, when the promise is resolved, it's re-rendered with
     // the data from the API
     return (
       <div>
-        Posts Index
+        <h3>Posts</h3>
+        <ul className = "list-group">
+          { this.renderPosts() }
+        </ul>
       </div>
     );
   }
